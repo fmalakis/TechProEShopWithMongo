@@ -20,9 +20,9 @@ public class ProductService {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public List<Product> getAllProducts(String priceStart, String priceEnd, String category) {
+    public List<Product> getAllProducts(String priceStart, String priceEnd, String category, String discounted) {
 
-        if (priceStart == null && priceEnd == null && category == null) {
+        if (priceStart == null && priceEnd == null && category == null && discounted == null) {
             return productRepository.findAll();
         }
 
@@ -38,6 +38,10 @@ public class ProductService {
 
         if (category != null) {
             filteredQuery.addCriteria(Criteria.where("category").in((Object[]) category.split(",")));
+        }
+
+        if (discounted != null) {
+            filteredQuery.addCriteria(Criteria.where("isDiscounted").is(Boolean.parseBoolean(discounted)));
         }
 
         return mongoTemplate.find(filteredQuery, Product.class);

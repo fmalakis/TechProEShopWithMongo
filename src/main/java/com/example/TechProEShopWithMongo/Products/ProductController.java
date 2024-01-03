@@ -24,10 +24,11 @@ public class ProductController {
     public List<Product> getAllProducts(
             @RequestParam(value="priceStart", required = false) String priceStart,
             @RequestParam(value = "priceEnd", required = false) String priceEnd,
-            @RequestParam(value = "category", required = false) String category)
+            @RequestParam(value = "category", required = false) String category,
+            @RequestParam(value = "discounted", required = false) String discounted)
     {
-        logger.info("getAllProducts called with: " + priceStart + " " + priceEnd + " " + category);
-        return productService.getAllProducts(priceStart, priceEnd, category);
+        logger.info("getAllProducts called with: " + priceStart + " " + priceEnd + " " + category + " " + discounted);
+        return productService.getAllProducts(priceStart, priceEnd, category, discounted);
     }
 
     @GetMapping("{id}")

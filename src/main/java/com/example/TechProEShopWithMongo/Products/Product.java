@@ -2,6 +2,10 @@ package com.example.TechProEShopWithMongo.Products;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+import org.springframework.data.mongodb.core.mapping.FieldType;
+
+import java.util.Optional;
 
 @Document(collection = "Products")
 public class Product {
@@ -11,6 +15,25 @@ public class Product {
     private String productName;
     private double price;
     private String category;
+    private boolean isDiscounted;
+    @Field(targetType = FieldType.DOUBLE)
+    private Double dPrice;
+
+    public boolean isDiscounted() {
+        return isDiscounted;
+    }
+
+    public void setDiscounted(boolean discounted) {
+        isDiscounted = discounted;
+    }
+
+    public Double getdPrice() {
+        return dPrice;
+    }
+
+    public void setdPrice(Double dPrice) {
+        this.dPrice = dPrice;
+    }
 
     public String getCategory() {
         return category;

@@ -25,10 +25,11 @@ public class ProductController {
             @RequestParam(value="priceStart", required = false) String priceStart,
             @RequestParam(value = "priceEnd", required = false) String priceEnd,
             @RequestParam(value = "category", required = false) String category,
-            @RequestParam(value = "discounted", required = false) String discounted)
+            @RequestParam(value = "discounted", required = false) String discounted,
+            @RequestParam(value = "onlyShowInStock", defaultValue = "true") String onlyShowInStock)
     {
-        logger.info("getAllProducts called with: " + priceStart + " " + priceEnd + " " + category + " " + discounted);
-        return productService.getAllProducts(priceStart, priceEnd, category, discounted);
+        logger.info("getAllProducts called with: " + priceStart + " " + priceEnd + " " + category + " " + discounted + " " + onlyShowInStock);
+        return productService.getAllProducts(priceStart, priceEnd, category, discounted, onlyShowInStock);
     }
 
     @GetMapping("{id}")

@@ -5,8 +5,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 
-import java.util.Optional;
-
 @Document(collection = "Products")
 public class Product {
 
@@ -18,6 +16,15 @@ public class Product {
     private boolean isDiscounted;
     @Field(targetType = FieldType.DOUBLE)
     private Double dPrice;
+    private int stock;
+
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
 
     public boolean isDiscounted() {
         return isDiscounted;

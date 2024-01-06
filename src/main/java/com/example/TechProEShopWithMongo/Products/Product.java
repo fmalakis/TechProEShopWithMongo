@@ -17,6 +17,15 @@ public class Product {
     @Field(targetType = FieldType.DOUBLE)
     private Double dPrice;
     private int stock;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public int getStock() {
         return stock;

@@ -20,9 +20,14 @@ public class ProductService {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public List<Product> getAllProducts(String priceStart, String priceEnd, String category, String discounted, String inStock) {
+    public List<Product> getAllProducts(String priceStart,
+                                        String priceEnd,
+                                        String category,
+                                        String discounted,
+                                        String inStock,
+                                        String search) {
 
-        if (priceStart == null && priceEnd == null && category == null && discounted == null && inStock == null) {
+        if (priceStart == null && priceEnd == null && category == null && discounted == null && inStock == null && search == null) {
             return productRepository.findAll();
         }
 
@@ -48,6 +53,12 @@ public class ProductService {
             filteredQuery.addCriteria(Criteria.where("stock").gt(0));
         } else {
             filteredQuery.addCriteria(Criteria.where("stock").gte(0));
+        }
+
+        if (search != null) {
+            Criteria searchByTitle = Criteria.where("productName").regex(".*"+search+".*", "i");
+            Criteria searchByDesc = Criteria.where("description").regex(".*"+search+".*", "i");
+            filteredQuery.addCriteria(new Criteria().orOperator(searchByTitle, searchByDesc));
         }
 
         return mongoTemplate.find(filteredQuery, Product.class);

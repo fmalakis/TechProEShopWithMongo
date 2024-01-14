@@ -46,10 +46,5 @@ public class ProductController {
         logger.info("getProductInfo called for Product ID: " + productID);
         return productService.getProductInfo(productID);
     }
-
-    @PostMapping("/buyProducts")
-    public void buyProducts(@RequestBody List<String> productIds) {
-        productService.buyProducts(productIds);
-    }
 }
 

@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/api/orders")
 public class OrderController {
     private final Logger logger = LoggerFactory.getLogger(OrderController.class);

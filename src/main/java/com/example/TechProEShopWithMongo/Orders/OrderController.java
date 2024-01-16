@@ -34,8 +34,8 @@ public class OrderController {
     }
 
     @PostMapping("/newOrder")
-    public void buyProducts(@RequestBody List<String> productIds) {
+    public Order buyProducts(@RequestBody List<String> productIds) {
         logger.info("newOrder called for " + productIds.toString());
-        orderService.createNewOrder(productIds);
+        return orderService.createNewOrder(productIds);
     }
 }

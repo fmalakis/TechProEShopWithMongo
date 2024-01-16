@@ -25,7 +25,7 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    public void createNewOrder(List<String> productIds) {
+    public Order createNewOrder(List<String> productIds) {
         ArrayList<Product> purchasedProducts = new ArrayList<>();
         double totalOrderPrice = 0;
 
@@ -60,5 +60,6 @@ public class OrderService {
                 purchasedProducts
         );
         orderRepository.save(newOrder);
+        return newOrder;
     }
 }
